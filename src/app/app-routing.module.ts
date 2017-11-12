@@ -6,8 +6,8 @@ import {AuthComponent} from './auth/auth.component';
 import {BlocksViewComponent} from './blocks-view/blocks-view.component';
 import {ImageUploadComponent} from './image-upload/image-upload.component';
 import {TableViewComponent} from './table-view/table-view.component';
-import {AuthGuardService} from './services/auth-guard-service.service';
-import {AuthService} from './services/auth-service.service';
+import {AuthGuardService} from './services/auth/auth-guard-service.service';
+import {AuthService} from './services/auth/auth-service.service';
 
 const routes: Routes = [
   {

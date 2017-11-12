@@ -1,6 +1,6 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {  FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth-service.service';
+import { AuthService } from '../services/auth/auth-service.service';
 import { User } from '../models/user.interface';
 
 
@@ -10,7 +10,7 @@ import { User } from '../models/user.interface';
   styleUrls: ['./auth.component.css']
 })
 
-export class AuthComponent implements OnInit, OnChanges {
+export class AuthComponent implements OnInit {
   authform: FormGroup;
   email: FormControl;
   password: FormControl;
@@ -40,9 +40,6 @@ export class AuthComponent implements OnInit, OnChanges {
       })
     });
   }
-  ngOnChanges(changes: any) {
-    console.log(changes);
-  }
   onSubmit({user}) {
     const users = this.auth.getUser(user).subscribe((el) => {
       if (typeof el === 'string') {
@@ -54,7 +51,10 @@ export class AuthComponent implements OnInit, OnChanges {
            this.password.setErrors({
              passwordErr: el
            });
+         return false;
       }
+      this.auth.login();
+       return true;
     });
     // console.log('___', 'click', 'user', user);
   }

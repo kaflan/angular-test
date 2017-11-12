@@ -9,7 +9,8 @@ import { BlocksViewComponent } from './blocks-view/blocks-view.component';
 import { TableViewComponent } from './table-view/table-view.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import {AuthService} from './services/auth-service.service';
+import {AuthService} from './services/auth/auth-service.service';
+import {SaveToStorageService} from './services/storage/save-to-storage.service';
 import { HttpModule } from '@angular/http';
 
 @NgModule({
@@ -29,7 +30,7 @@ import { HttpModule } from '@angular/http';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [ AuthService ],
+  providers: [ AuthService, SaveToStorageService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

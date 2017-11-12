@@ -2,16 +2,16 @@ import {Injectable} from '@angular/core';
 import {Router, CanActivate} from '@angular/router';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
-import {User} from '../models/user.interface';
-import {Users} from '../Users.Mock';
-
+import {User} from '../../models/user.interface';
+import {Users} from '../../Users.Mock';
+import { SaveToStorageService} from '../storage/save-to-storage.service';
 
 @Injectable()
 export class AuthService implements CanActivate {
   loggedIn: boolean;
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private storage: SaveToStorageService) {
     if (this.authenticated) {
       this.setLoggedIn(true);
     }
@@ -53,12 +53,13 @@ export class AuthService implements CanActivate {
   }
 
   login(value = true) {
-    console.log('___', 'login');
     this.setLoggedIn(value);
+    this.storage.saveColectionToStorage('auth', true);
   }
 
   logOut(value = false) {
     this.setLoggedIn(value);
+    this.storage.clearAll();
   }
 
   get authenticated() {

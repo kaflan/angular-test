@@ -7,7 +7,7 @@ export class SaveToStorageService {
   }
 
   saveColectionToStorage(name, data) {
-    localStorage.setItem(`${name}`, JSON.stringify(data));
+    localStorage.setItem(name, JSON.stringify(data));
   }
 
   getCollectionFromStorage(name) {
@@ -45,7 +45,7 @@ export class SaveToStorageService {
   }
 
   removeCollection(name) {
-    localStorage.removeItem(`${name}`);
+    localStorage.removeItem(name);
   }
 
 }
