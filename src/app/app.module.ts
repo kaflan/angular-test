@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { AuthComponent } from './auth/auth.component';
@@ -10,8 +11,8 @@ import { TableViewComponent } from './table-view/table-view.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import {AuthService} from './services/auth/auth-service.service';
+import {AuthGuardService} from './services/auth/auth-guard-service.service';
 import {SaveToStorageService} from './services/storage/save-to-storage.service';
-import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { HttpModule } from '@angular/http';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [ AuthService, SaveToStorageService ],
+  providers: [ SaveToStorageService, AuthGuardService, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

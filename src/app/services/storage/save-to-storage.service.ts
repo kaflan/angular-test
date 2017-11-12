@@ -11,7 +11,7 @@ export class SaveToStorageService {
   }
 
   getCollectionFromStorage(name) {
-    return JSON.parse(localStorage.get(`${name}`));
+    return JSON.parse(localStorage.getItem(`${name}`));
   }
 
   updateItemInCollection(name, data) {

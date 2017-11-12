@@ -11,10 +11,11 @@ import {AuthService} from './services/auth/auth-service.service';
 
 const routes: Routes = [
   {
-    path: '', redirectTo: 'signIn', pathMatch: 'full'
+    path: '', redirectTo: 'signIn', pathMatch: 'full',
   },
   {
     path: 'signIn', component: AuthComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'upload', component: ImageUploadComponent
@@ -26,7 +27,7 @@ const routes: Routes = [
     path: 'block', component: BlocksViewComponent
   },
   {
-    path: 'signOut' , redirectTo: 'signIn',
+    path: 'signOut' , redirectTo: 'signIn', pathMatch: 'full',
     canActivate: [AuthService]
   }
 ];

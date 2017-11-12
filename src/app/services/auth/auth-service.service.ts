@@ -42,9 +42,11 @@ export class AuthService implements CanActivate {
     }, 100);
   }
   canActivate() {
+    debugger;
+    console.log('auth');
     this.logOut();
-    this.router.navigate(['']);
-    return false;
+    // this.router.navigate(['']);
+    return true;
   }
 
   setLoggedIn(value: boolean) {

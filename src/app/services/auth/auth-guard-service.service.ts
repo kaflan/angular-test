@@ -12,8 +12,8 @@ export class AuthGuardService implements CanActivate {
 
   canActivate() {
     // If the user is not logged in we'll send them back to the home page
-    if (this.storage.getCollectionFromStorage('auth')) {
-      return true;
+    if (!this.storage.getCollectionFromStorage('auth')) {
+      return false;
     }
     if (!this.auth.authenticated) {
       this.router.navigate(['']);
