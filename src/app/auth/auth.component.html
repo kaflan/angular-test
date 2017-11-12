@@ -2,7 +2,8 @@
   <div class="row align-items-center">
   </div>
   <div class="row">
-    <form novalidate [formGroup]="authform" class="align-self-center offset-sm-3 col-6 offset-sm-3 sign-in-form" (ngSubmit)="onSubmit(authform.value)" >
+    <form novalidate [formGroup]="authform" class="align-self-center offset-sm-3 col-6 offset-sm-3 sign-in-form"
+          (ngSubmit)="onSubmit(authform.value)">
       <fieldset formGroupName="user">
         <div class="form-group" [ngClass]="{
             'has-danger': email.invalid && (email.dirty || email.touched),
@@ -27,8 +28,11 @@
             <p *ngIf="password.errors.passwordErr">Password wrong</p>
           </div>
         </div>
+        <p></p>
+        <button type="submit" class="btn btn-primary form-control"
+                [disabled]="!authform.valid">Submit
+        </button>
       </fieldset>
-      <button type="submit" class="btn btn-primary form-control" >Submit</button>
     </form>
   </div>
 </div>
