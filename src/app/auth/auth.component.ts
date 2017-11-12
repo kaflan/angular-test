@@ -1,32 +1,59 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import {  FormControl,FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth-service.service';
 import { User } from '../models/user.interface';
-import {AuthService} from '../auth-service.service';
+import { error } from 'selenium-webdriver';
+
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./auth.component.css']
 })
 
-export class AuthComponent implements OnInit {
-  user: User = {
-    name: '',
-    password: '',
-    email: '',
-  };
+export class AuthComponent implements OnInit, OnChanges {
+  authform: FormGroup;
+  email: FormControl;
+  password: FormControl;
+  error:string;
+  private user: User;
 
-  constructor(private auth: AuthService) { }
-
+  constructor (private auth:AuthService) {}
   ngOnInit() {
+    this.createFormControls();
+    this.createForm();
   }
-  onSubmit() {
-    // debugger;
-    // this.auth.login(true);
-    const users = this.auth.getUser(this.user).subscribe((el) => {
-      console.log(el, 'el');
+
+  createFormControls() {
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.pattern("[^ @]*@[^ @]*")
+    ]);
+    this.password = new FormControl('', [
+      Validators.required
+    ]);
+  }
+  createForm() {
+    this.authform = new FormGroup({
+      user: new FormGroup({
+        email: this.email,
+        password: this.password
+      })
     });
-    console.log('___', 'click', 'user', users);
+  }
+  ngOnChanges(changes: any) {
+    console.log(changes);
+  }
+  onSubmit({user}) {
+    this.error = '';
+    console.log(user);
+    const users = this.auth.getUser(user).subscribe((el) => {
+      if(typeof el === 'string') {
+          debugger
+          this.error = el;
+      }
+    });
+    // console.log('___', 'click', 'user', user);
   }
 
 }

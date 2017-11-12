@@ -13,7 +13,7 @@ export const Users: [User] = [
     password: 'admin',
     id: 2
   }, {
-   name: 'admin@admin.com',
+    name: 'admin@admin.com',
     email: 'admin@admin.com',
     id: 3,
     password: 'admin'
