@@ -1,0 +1,8 @@
+.nav-center{
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+.navbar-nav{
+  flex-direction: row;
+  justify-content: space-around;
+}

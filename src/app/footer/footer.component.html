@@ -1,3 +1,17 @@
-<p>
-  footer works!
-</p>
+<nav class="navbar-dark bg-dark fixed-bottom">
+  <div class="container" id="navbarNav2">
+    <ul class="nav navbar-nav  mx-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="/table" class="nav-link">Table View</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="/block" class="nav-link">Block View</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a routerLink="/upload" class="nav-link">Image Upload</a>
+      </li>
+    </ul>
+  </div>
+  <!--<a routerLinkActive="active" class="navbar-brand"  *ngIf="guard.canActivate()" (click)="logOut()">Sign Out</a>-->
+  <!--<a routerLink="/signIn" routerLinkActive="active" class="navbar-brand" *ngIf="!guard.canActivate()">Sign in </a>-->
+</nav>
