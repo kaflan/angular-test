@@ -15,7 +15,6 @@ export class AuthService {
     if (this.authenticated) {
       this.setLoggedIn(true);
     }
-    // this.setLoggedIn(true);
   }
 
   getUser(user: User): any {

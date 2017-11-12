@@ -56,7 +56,6 @@ export class AuthComponent implements OnInit {
       this.auth.login();
        return true;
     });
-    // console.log('___', 'click', 'user', user);
   }
 
 }
