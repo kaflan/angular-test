@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthGuardService} from '../services/auth/auth-guard-service.service';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

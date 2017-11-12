@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule, Routes} from '@angular/router';
 
 import {AuthComponent} from './auth/auth.component';
 import {BlocksViewComponent} from './blocks-view/blocks-view.component';
 import {ImageUploadComponent} from './image-upload/image-upload.component';
 import {TableViewComponent} from './table-view/table-view.component';
 import {AuthGuardService} from './services/auth/auth-guard-service.service';
-import {AuthService} from './services/auth/auth-service.service';
+import {SignOutComponent} from './sign-out/sign-out.component';
 
 const routes: Routes = [
   {
@@ -18,18 +18,20 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'upload', component: ImageUploadComponent
+    path: 'upload', component: ImageUploadComponent,
+    canActivate: [AuthGuardService]
   },
   {
-    path: 'table', component: TableViewComponent
+    path: 'table', component: TableViewComponent,
+    // canActivate: [AuthGuardService]
   },
   {
-    path: 'block', component: BlocksViewComponent
+    path: 'block', component: BlocksViewComponent,
+    // canActivate: [AuthGuardService]
   },
-  {
-    path: 'signOut' , redirectTo: 'signIn', pathMatch: 'full',
-    canActivate: [AuthService]
-  }
+  // {
+  //   path: 'signOut', component: SignOutComponent
+  // }
 ];
 
 @NgModule({
@@ -37,7 +39,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [ RouterModule ],
+  exports: [RouterModule],
   declarations: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
