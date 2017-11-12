@@ -20,7 +20,7 @@ import { HttpModule } from '@angular/http';
     BlocksViewComponent,
     TableViewComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

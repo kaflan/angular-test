@@ -2,7 +2,7 @@
   <div class="row align-items-center">
   </div>
   <div class="row">
-    <form novalidate [formGroup]="authform" class="align-self-center offset-sm-3 col-6 offset-sm-3 sign-in-form" (ngSubmit)="onSubmit(authform.value)">
+    <form novalidate [formGroup]="authform" class="align-self-center offset-sm-3 col-6 offset-sm-3 sign-in-form" (ngSubmit)="onSubmit(authform.value)" >
       <fieldset formGroupName="user">
         <div class="form-group" [ngClass]="{
             'has-danger': email.invalid && (email.dirty || email.touched),
@@ -13,9 +13,7 @@
           <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
             <p *ngIf="email.errors.required">Email is required</p>
             <p *ngIf="email.errors.pattern">The email address must contain at least the @ character</p>
-          </div>
-          <div class="form-control-feedback">
-            <p *ngIf="error==='user not found'">User not found</p>
+            <p *ngIf="email.errors.user">User not found</p>
           </div>
         </div>
         <div class="form-group" [ngClass]="{
@@ -26,12 +24,11 @@
           <input type="password" class="form-control" formControlName="password" required>
           <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
             <p *ngIf="password.errors.required">Password is required</p>
-          </div>
-          <div class="form-control-feedback">
-            <p *ngIf="error==='password wrong'">Password wrong</p>
+            <p *ngIf="password.errors.passwordErr">Password wrong</p>
           </div>
         </div>
       </fieldset>
       <button type="submit" class="btn btn-primary form-control" >Submit</button>
     </form>
   </div>
+</div>

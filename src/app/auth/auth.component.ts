@@ -1,8 +1,7 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import {  FormControl,FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth-service.service';
 import { User } from '../models/user.interface';
-import { error } from 'selenium-webdriver';
 
 
 @Component({
@@ -15,10 +14,10 @@ export class AuthComponent implements OnInit, OnChanges {
   authform: FormGroup;
   email: FormControl;
   password: FormControl;
-  error:string;
+
   private user: User;
 
-  constructor (private auth:AuthService) {}
+  constructor (private auth: AuthService) {}
   ngOnInit() {
     this.createFormControls();
     this.createForm();
@@ -27,7 +26,7 @@ export class AuthComponent implements OnInit, OnChanges {
   createFormControls() {
     this.email = new FormControl('', [
       Validators.required,
-      Validators.pattern("[^ @]*@[^ @]*")
+      Validators.pattern('[^ @]*@[^ @]*')
     ]);
     this.password = new FormControl('', [
       Validators.required
@@ -45,12 +44,16 @@ export class AuthComponent implements OnInit, OnChanges {
     console.log(changes);
   }
   onSubmit({user}) {
-    this.error = '';
-    console.log(user);
     const users = this.auth.getUser(user).subscribe((el) => {
-      if(typeof el === 'string') {
-          debugger
-          this.error = el;
+      if (typeof el === 'string') {
+           if (el === ' user not found') {
+             this.email.setErrors({
+               user: el
+             });
+           }
+           this.password.setErrors({
+             passwordErr: el
+           });
       }
     });
     // console.log('___', 'click', 'user', user);
