@@ -12,11 +12,11 @@ export class AuthService {
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
 
   constructor(private router: Router, private storage: SaveToStorageService) {
-    debugger;
+    // debugger
     if (this.authenticated) {
-      debugger;
       this.setLoggedIn(true);
     }
+
   }
 
   getUser(user: User): any {

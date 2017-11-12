@@ -14,8 +14,7 @@ const routes: Routes = [
     path: '', redirectTo: 'signIn', pathMatch: 'full',
   },
   {
-    path: 'signIn', component: AuthComponent,
-    canActivate: [AuthGuardService]
+    path: 'signIn', component: AuthComponent
   },
   {
     path: 'upload', component: ImageUploadComponent,
@@ -23,15 +22,15 @@ const routes: Routes = [
   },
   {
     path: 'table', component: TableViewComponent,
-    // canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'block', component: BlocksViewComponent,
-    // canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService]
   },
-  // {
-  //   path: 'signOut', component: SignOutComponent
-  // }
+  {
+    path: 'signOut', component: SignOutComponent
+  }
 ];
 
 @NgModule({
