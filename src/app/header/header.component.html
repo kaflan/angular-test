@@ -14,14 +14,8 @@
       <li class="nav-item" routerLinkActive="active">
         <a routerLink="/upload" class="nav-link">Image Upload</a>
       </li>
-      <!--<li class="nav-item">-->
-      <!--&lt;!&ndash;<a routerLink="/signOut" routerLinkActive="active"></a>&ndash;&gt;-->
-      <!--</li>-->
     </ul>
   </div>
-  {{
-    guard.canActivate()
-  }}
-  <a routerLink="/signOut" routerLinkActive="active" class="navbar-brand"  *ngIf="guard.canActivate()">Sign Out</a>
+  <a routerLinkActive="active" class="navbar-brand"  *ngIf="guard.canActivate()" (click)="logOut()">Sign Out</a>
   <a routerLink="/signIn" routerLinkActive="active" class="navbar-brand" *ngIf="!guard.canActivate()">Sign in </a>
 </nav>

@@ -7,7 +7,6 @@ import {BlocksViewComponent} from './blocks-view/blocks-view.component';
 import {ImageUploadComponent} from './image-upload/image-upload.component';
 import {TableViewComponent} from './table-view/table-view.component';
 import {AuthGuardService} from './services/auth/auth-guard-service.service';
-import {SignOutComponent} from './sign-out/sign-out.component';
 
 const routes: Routes = [
   {
@@ -28,15 +27,12 @@ const routes: Routes = [
     path: 'block', component: BlocksViewComponent,
     canActivate: [AuthGuardService]
   },
-  {
-    path: 'signOut', component: SignOutComponent
-  }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { enableTracing: true })
   ],
   exports: [RouterModule],
   declarations: []

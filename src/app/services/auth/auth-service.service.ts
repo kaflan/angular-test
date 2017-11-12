@@ -12,11 +12,10 @@ export class AuthService {
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
 
   constructor(private router: Router, private storage: SaveToStorageService) {
-    // debugger
     if (this.authenticated) {
       this.setLoggedIn(true);
     }
-
+    // this.setLoggedIn(true);
   }
 
   getUser(user: User): any {
@@ -55,6 +54,7 @@ export class AuthService {
 
   logOut(value = false) {
     this.setLoggedIn(value);
+    this.router.navigate(['']);
     this.storage.clearAll();
   }
 

@@ -13,7 +13,6 @@ import { FooterComponent } from './footer/footer.component';
 import {AuthService} from './services/auth/auth-service.service';
 import {AuthGuardService} from './services/auth/auth-guard-service.service';
 import {SaveToStorageService} from './services/storage/save-to-storage.service';
-import { SignOutComponent } from './sign-out/sign-out.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { SignOutComponent } from './sign-out/sign-out.component';
     BlocksViewComponent,
     TableViewComponent,
     HeaderComponent,
-    FooterComponent,
-    SignOutComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
