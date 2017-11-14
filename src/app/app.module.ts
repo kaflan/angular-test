@@ -15,6 +15,7 @@ import {AuthGuardService} from './services/auth/auth-guard-service.service';
 import {SaveToStorageService} from './services/storage/save-to-storage.service';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ImagePreview } from './directives/image-preview.directive';
+import {HelperService} from './services/Helpers/helper.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { ImagePreview } from './directives/image-preview.directive';
     FileUploadModule,
     HttpModule
   ],
-  providers: [ SaveToStorageService, AuthGuardService, AuthService ],
+  providers: [ SaveToStorageService, AuthGuardService, AuthService, HelperService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

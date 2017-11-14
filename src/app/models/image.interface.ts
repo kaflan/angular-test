@@ -4,4 +4,5 @@ export  interface  ImageInterface {
   fileSize: string;
   checksum: string;
   uploadedUser: number;
+  data?: string;
 }

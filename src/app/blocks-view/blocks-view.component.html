@@ -1,3 +1,6 @@
-<p>
-  blocks-view works!
-</p>
+<ul *ngFor="let image of images">
+  <li>
+    {{image | json}}
+    <img [src]="" [alt]="image.name" />
+  </li>
+</ul>

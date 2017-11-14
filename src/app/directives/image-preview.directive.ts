@@ -1,12 +1,13 @@
-import { Directive, ElementRef, Input, Renderer, OnChanges, SimpleChanges } from '@angular/core';
+import {Directive, ElementRef, Input, Renderer, OnChanges, SimpleChanges} from '@angular/core';
 
-@Directive({ selector: 'img[imgPreview]' })
+@Directive({selector: 'img[imgPreview]'})
 
-export class ImagePreview {
+export class ImagePreview implements OnChanges {
 
   @Input() image: any;
 
-  constructor(private el: ElementRef, private renderer: Renderer) { }
+  constructor(private el: ElementRef, private renderer: Renderer) {
+  }
 
   ngOnChanges(changes: SimpleChanges) {
 

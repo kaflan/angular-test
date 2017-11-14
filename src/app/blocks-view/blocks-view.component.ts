@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {SaveToStorageService} from '../services/storage/save-to-storage.service';
 
 @Component({
   selector: 'app-blocks-view',
@@ -7,10 +8,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class BlocksViewComponent implements OnInit {
-
-  constructor() { }
+  private images;
+  constructor(private saveToStorage: SaveToStorageService) { }
 
   ngOnInit() {
+    this.images = this.saveToStorage.getCollectionFromStorage('images');
   }
-
 }
