@@ -14,7 +14,6 @@ import {AuthService} from './services/auth/auth-service.service';
 import {AuthGuardService} from './services/auth/auth-guard-service.service';
 import {SaveToStorageService} from './services/storage/save-to-storage.service';
 import { FileUploadModule } from 'ng2-file-upload';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +22,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     BlocksViewComponent,
     TableViewComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

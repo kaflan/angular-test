@@ -1,4 +1,5 @@
-import {Component, OnInit, ViewEncapsulation, ElementRef} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import {FileUploader} from 'ng2-file-upload';
 
 const URL = '';
@@ -11,29 +12,27 @@ const URL = '';
 })
 export class ImageUploadComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({url: URL});
-  public hasBaseDropZoneOver: boolean = false;
-  public hasAnotherDropZoneOver: boolean = false;
-
+  public hasBaseDropZoneOver = false;
+  public filePreviewPath: SafeUrl;
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
   }
 
-  public fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
-  }
-
-  constructor(private eleRef: ElementRef) {
+  constructor(private sanitizer: DomSanitizer) {
+    this.uploader.onAfterAddingFile = (fileItem) => {
+      if (fileItem._file.type.match(/image\/*/)) {
+        this.filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
+        return true;
+      }
+      return false;
+    };
+    this.uploader.setOptions({allowedMimeType: ['image/jpg', 'image/png']});
   }
 
   ngOnInit() {
   }
   onClickMe($event) {
-    this.eleRef.nativeElement.querySelector('#select').dispatchEvent(new Event('click'));
-    console.log('click');
-  }
-  Onclik($event) {
-    // debugger
-    console.log('click', $event);
+    console.log('click', this.uploader.queue);
   }
 
 }
