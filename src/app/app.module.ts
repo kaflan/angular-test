@@ -13,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
 import {AuthService} from './services/auth/auth-service.service';
 import {AuthGuardService} from './services/auth/auth-guard-service.service';
 import {SaveToStorageService} from './services/storage/save-to-storage.service';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {SaveToStorageService} from './services/storage/save-to-storage.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    FileUploadModule,
     HttpModule
   ],
   providers: [ SaveToStorageService, AuthGuardService, AuthService ],
