@@ -19,14 +19,7 @@ export class ImageUploadComponent implements OnInit {
   }
 
   constructor(private sanitizer: DomSanitizer) {
-    this.uploader.onAfterAddingFile = (fileItem) => {
-      if (fileItem._file.type.match(/image\/*/)) {
-        this.filePreviewPath  = this.sanitizer.bypassSecurityTrustUrl((window.URL.createObjectURL(fileItem._file)));
-        return true;
-      }
-      return false;
-    };
-    this.uploader.setOptions({allowedMimeType: ['image/jpg', 'image/png']});
+    this.uploader.setOptions({allowedMimeType: ['image/jpeg', 'image/png']});
   }
 
   ngOnInit() {
