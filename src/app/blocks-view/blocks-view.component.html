@@ -2,8 +2,8 @@
   <div class="row">
     <div *ngFor="let image of images" class="col-md-auto margin">
       <div class="img-container">
-        <div class="overlay">
-          <div (click)="removeImage(image.id)" class="text">x</div>
+        <div class="overlay" (click)="removeImage(image.id)">
+          <div  class="text">x</div>
         </div>
         <img
           [src]="image.data"
