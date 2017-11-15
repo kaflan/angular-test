@@ -1,0 +1,42 @@
+.margin{
+  margin: 9px;
+}
+.checksum{
+  display: inline-block;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.btn-remove{
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.overlay {
+  position: absolute;
+  background-color: #008CBA;
+  overflow: hidden;
+  width: 10%;
+  height:0;
+  transition: .5s ease;
+  border-radius: 50%;
+  margin-left: 167px;
+}
+.img-container:hover .overlay {
+  height: 10%;
+}
+.text {
+  white-space: nowrap;
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+
+

@@ -15,16 +15,13 @@ export class SaveToStorageService {
   }
 
   updateItemInCollection(name, data) {
-    const collection = this.getCollectionFromStorage(name);
-    if (!collection) {
-      return [];
+    const saveToCOllection = this.saveColectionToStorage;
+    if (!this.getCollectionFromStorage(name)) {
+      saveToCOllection(name, [].concat(data));
+      return false;
     }
-    return collection.reduce((element, prev) => {
-      if (element.id === data.id) {
-        return prev.concat(data);
-      }
-      return prev.concat(element);
-    }, []);
+    saveToCOllection(name, this.getCollectionFromStorage(name).concat(data));
+    return true;
   }
 
   removeItemInCollection(name, id) {

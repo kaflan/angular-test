@@ -1,8 +1,8 @@
 export  interface  ImageInterface {
   id: number;
-  imageName: string;
+  name: string;
   fileSize: string;
-  checksum: string;
+  ckecksum: string;
   uploadedUser: number;
   data?: string;
 }

@@ -14,7 +14,6 @@ const URL = '';
 })
 export class ImageUploadComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({url: URL});
-  public images = [];
   public hasBaseDropZoneOver = false;
   public filePreviewPath: SafeUrl;
   public fileOverBase(e: any): void {
@@ -36,24 +35,20 @@ export class ImageUploadComponent implements OnInit {
   SaveAll($event) {
     const pictures = this.uploader.queue.map((item, index) => {
       //
-      const id = this.helpers.randId()
-      const propmise = this.readFile(this.uploader.queue[index]._file, id);
-      return {
-        id,
-        fileSize: item.file.size,
-        name: item.file.name,
-        data: this.readFile(this.uploader.queue[index]._file, id),
-        checksum: this.helpers.hash(item.file.name)
-      };
+      const id = this.helpers.randId();
+      const checksum = this.helpers.hash(item.file.name);
+      const file = this.uploader.queue[index]._file;
+      const fileSize =  item.file.size;
+      const name = item.file.name;
+      this.readFile(file, id, name, checksum, fileSize);
     });
-    this.saveToStorage.saveColectionToStorage('images', pictures);
     this.uploader.clearQueue();
   }
-  readFile(excelFile, id) {
+  readFile(excelFile, id, name, ckecksum, fileSize) {
       const reader = new FileReader();
       reader.onload = (event: any) => {
         const data = event.target.result;
-        this.images.push({id, data});
+        this.saveToStorage.updateItemInCollection('images', { id, name, ckecksum, fileSize, data });
       };
       reader.readAsDataURL(excelFile);
   }

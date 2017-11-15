@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {SaveToStorageService} from '../services/storage/save-to-storage.service';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-blocks-view',
@@ -12,6 +13,19 @@ export class BlocksViewComponent implements OnInit {
   constructor(private saveToStorage: SaveToStorageService) { }
 
   ngOnInit() {
-    this.images = this.saveToStorage.getCollectionFromStorage('images');
+    new Observable(observer => observer.next(this.saveToStorage.getCollectionFromStorage('images'))).subscribe(
+      (images) => {
+        this.images = images;
+      }
+    );
+  }
+  removeImage (id) {
+    console.log('remove', id);
+  }
+  onHovering() {
+    console.log('hover');
+  }
+  onUnovering() {
+    console.log('onUnovering');
   }
 }
