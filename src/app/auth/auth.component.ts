@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth/auth-service.service';
 import { User } from '../models/user.interface';
-
+import {HelperService} from '../services/Helpers/helper.service';
+import {SaveToStorageService} from '../services/storage/save-to-storage.service';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +18,7 @@ export class AuthComponent implements OnInit {
 
   private user: User;
 
-  constructor (private auth: AuthService) {}
+  constructor (private auth: AuthService, private helpers: HelperService, private save: SaveToStorageService) {}
   ngOnInit() {
     this.createFormControls();
     this.createForm();
@@ -40,8 +41,13 @@ export class AuthComponent implements OnInit {
       })
     });
   }
-  onSubmit({user}) {
-    const users = this.auth.getUser(user).subscribe((el) => {
+  onSubmit(user) {
+    const users = this.auth.getUser({
+      email: user.email,
+      name: user.email,
+      id: this.helpers.randId(),
+      password: user.password
+    }).subscribe((el) => {
       if (typeof el === 'string') {
            if (el === ' user not found') {
              this.email.setErrors({

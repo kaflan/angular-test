@@ -25,6 +25,7 @@ export class AuthService {
     return (new Observable(observer => {
       if (typeof findUserName === 'object' && typeof password === 'object') {
         this.timeOut(observer, findUserName);
+        this.storage.saveColectionToStorage('user', user);
       }
       if (typeof findUserName === 'undefined') {
           this.timeOut(observer, 'user not found');

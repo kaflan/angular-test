@@ -16,7 +16,6 @@ import {SaveToStorageService} from './services/storage/save-to-storage.service';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ImagePreview } from './directives/image-preview.directive';
 import {HelperService} from './services/Helpers/helper.service';
-
 @NgModule({
   declarations: [
     AppComponent,
