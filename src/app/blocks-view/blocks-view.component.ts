@@ -21,6 +21,9 @@ export class BlocksViewComponent implements OnInit {
   }
   removeImage (id) {
     console.log('remove', id);
-    this.saveToStorage.removeItemInCollection('images', id );
+    this.saveToStorage.removeItemInCollection('images', id ).subscribe(images => {
+      // debugger
+      this.images = images;
+    });
   }
 }

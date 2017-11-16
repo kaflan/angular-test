@@ -22,11 +22,11 @@ export class SaveToStorageService {
 
   getCollectionFromStorage(name) {
     return new Observable(observer => {
-      if (this.getCollection('name')) {
-        observer.next(this.getCollection('name'));
+      if (this.getCollection(name)) {
+        observer.next(this.getCollection(name));
       }
-      if (!this.getCollection('name')) {
-        observer.error(this.getCollection('name'));
+      if (!this.getCollection(name)) {
+        observer.error(this.getCollection(name));
         observer.complete();
       }
     });
@@ -37,7 +37,8 @@ export class SaveToStorageService {
   }
 
   updateItemInCollection(name, data) {
-    return this.saveCollectionToStorage(name, this.getCollection(name).concat(data));
+    return this.saveCollectionToStorage(name, this.getCollection(name) ?
+      this.getCollection(name).concat(data) : [].concat(data));
   }
 
   removeItemInCollection(name, id) {
@@ -48,7 +49,7 @@ export class SaveToStorageService {
       }
       return previousValue.concat(currentValue);
     }, []);
-    this.saveCollectionToStorage(name, newCollection);
+    return this.saveCollectionToStorage(name, newCollection);
   }
 
   clearAll() {
