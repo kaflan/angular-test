@@ -10,7 +10,7 @@ export class AuthGuardService implements CanActivate {
   constructor(private auth: AuthService, private storage: SaveToStorageService) {}
 
   canActivate() {
-    if (!this.auth.authenticated && !this.storage.getCollectionFromStorage('auth')) {
+    if (!this.auth.authenticated && !this.storage.getCollection('auth')) {
       return false;
     }
     return true;

@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class SaveToStorageService {
@@ -6,35 +7,48 @@ export class SaveToStorageService {
   constructor() {
   }
 
-  saveColectionToStorage(name, data) {
+  saveCollectionToStorage(name, data) {
     localStorage.setItem(name, JSON.stringify(data));
+    return new Observable(
+      observer => {
+        observer.next(this.getCollection(name));
+        if (!this.getCollection(name)) {
+          observer.error(this.getCollection(name));
+          observer.complete();
+        }
+      }
+    );
   }
 
   getCollectionFromStorage(name) {
+    return new Observable(observer => {
+      if (this.getCollection('name')) {
+        observer.next(this.getCollection('name'));
+      }
+      if (!this.getCollection('name')) {
+        observer.error(this.getCollection('name'));
+        observer.complete();
+      }
+    });
+  }
+
+  getCollection(name) {
     return JSON.parse(localStorage.getItem(`${name}`));
   }
 
   updateItemInCollection(name, data) {
-    const saveToCOllection = this.saveColectionToStorage;
-    if (!this.getCollectionFromStorage(name)) {
-      saveToCOllection(name, [].concat(data));
-      return false;
-    }
-    saveToCOllection(name, this.getCollectionFromStorage(name).concat(data));
-    return true;
+    return this.saveCollectionToStorage(name, this.getCollection(name).concat(data));
   }
 
   removeItemInCollection(name, id) {
-    const collection = this.getCollectionFromStorage(name);
-    if (!collection) {
-      return [];
-    }
-    return collection.reduce((element, prev) => {
-      if (element.id === id) {
-        return prev.concat();
+    const collection = this.getCollection(name);
+    const newCollection = collection.reduce((previousValue, currentValue) => {
+      if (currentValue.id === id || previousValue.id === id) {
+        return previousValue.concat();
       }
-      return prev.concat(element);
+      return previousValue.concat(currentValue);
     }, []);
+    this.saveCollectionToStorage(name, newCollection);
   }
 
   clearAll() {

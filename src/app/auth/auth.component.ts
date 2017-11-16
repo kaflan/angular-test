@@ -41,7 +41,7 @@ export class AuthComponent implements OnInit {
       })
     });
   }
-  onSubmit(user) {
+  onSubmit({user}) {
     const users = this.auth.getUser({
       email: user.email,
       name: user.email,

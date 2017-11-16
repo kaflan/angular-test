@@ -13,19 +13,14 @@ export class BlocksViewComponent implements OnInit {
   constructor(private saveToStorage: SaveToStorageService) { }
 
   ngOnInit() {
-    new Observable(observer => observer.next(this.saveToStorage.getCollectionFromStorage('images'))).subscribe(
-      (images) => {
-        this.images = images;
-      }
-    );
+    this.saveToStorage.getCollectionFromStorage('images').subscribe((images) => {
+      this.images = images;
+    }, error => {
+       console.log(error, 'err');
+    });
   }
   removeImage (id) {
     console.log('remove', id);
-  }
-  onHovering() {
-    console.log('hover');
-  }
-  onUnovering() {
-    console.log('onUnovering');
+    this.saveToStorage.removeItemInCollection('images', id );
   }
 }
